@@ -39,13 +39,75 @@
                 </tr>
             </tbody>
         </table>
+
+        <label for="name">이름</label>
+        <input v-model:value="name">
+
+        <label for="tel">전화번호</label>
+        <input v-model:value="tel">
+
+        <label for="address">주소</label>
+        <input v-model:value="address">
+        
+
+        <button v-on:click="clickBind">추가</button>
     </div>
-
-
-    
 
 </body>
 
 </html>
 
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> /* JSX를 자바스크립트로 변환 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery library */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            contacts : [
+                { name : '설현',  tel :  '010-3456-8200', address : '서울' },
+                { name : '혜리',  tel :  '010-3456-8299', address : '인천' },
+                { name : '아이유',  tel :  '010-3456-1111', address : '부산' },
+                ],
+
+            name : '',
+            tel : '',
+            address : '',
+           
+        },
+        //template: ``,
+        methods: {
+            clickBind : function(event){
+                console.log(event.target);
+
+                var obj ={
+                    name : this.$data.name,
+                    tel : this.$data.tel,
+                    address : this.$data.address,
+                }
+                this.$set(this.$data.contacts, this.$data.contacts.length, obj);
+            }
+        },
+        components: {
+    
+        }, 
+        computed: {
+    
+        },
+        watch: {
+    
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+    
+</script>
