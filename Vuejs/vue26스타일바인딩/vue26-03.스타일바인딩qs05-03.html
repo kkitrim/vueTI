@@ -111,12 +111,12 @@
     <div>
         <div id="eljvs">
             자바스크립로 style 적용<br>
-            <div id="a"
+            <!-- <div id="a"
                  style=" width: 100px; height: 50px; border: 1px solid black; text-align: center; line-height: 50px;"
                  onmouseover="overEvent(this)"
                  onmouseout="outEvent(this)">
                 테스트
-            </div>
+            </div> -->
         </div>
 
         <div id="elvue">
@@ -135,4 +135,106 @@
 
 </html>
 
+
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> /* JSX를 자바스크립트로 변환 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery library */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#example3",
+        data: {
+            style1 : null,
+        },
+        //template: ``,
+        methods: {
+            clickArrow : function(event){
+                console.log(event.target);
+
+                var obj = {
+                    height: "50px",
+                    width: "150px",
+                    border: "1px solid black",
+                    textAlign: "center",
+                    lineHeight: "50px",
+                    fontWeight: "800",
+                    color: "red",
+                    backgroundColor: "darkgoldenrod",
+                    padding: "50px",
+                }
+
+                this.$set( this.$data, 'style1', obj);
+
+            }
+        },
+        components: {
+    
+        }, 
+        computed: {
+    
+        },
+        watch: {
+    
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+
+    new Vue({
+        /* edtmc^2w */
+        el: "#elvue",
+        data: {
+            style1 : null,
+        },
+        //template: ``,
+        methods: {
+            overEvent : function(event){
+                console.log(event.target);
+
+                var obj ={
+                    backgroundColor : "purple",
+                    color : "yellow",
+                }
+
+                this.$set( this.$data, 'style1', obj);
+            },
+            outEvent : function(event){
+                console.log(event.target);
+
+                var obj ={
+                    backgroundColor : "aqua",
+                    color : "black",
+                }
+
+                this.$set( this.$data, 'style1', obj);
+
+            }
+        
+        },
+        components: {
+    
+        }, 
+        computed: {
+    
+        },
+        watch: {
+    
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+    
+    
+</script>
