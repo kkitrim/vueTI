@@ -66,4 +66,111 @@
 
 </html>
 
+
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> /* JSX를 자바스크립트로 변환 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery library */</script>
+<script>
+
+    var store = new Vuex.Store({
+        actions: {
+            /* 왜 actions 를 사용하나? 비동기 외부 함수 호출 */
+            /* actions 는 메서드만 가능하다. 
+              첫번째인자: 무조건 mutations. 
+              두번째인자: 값.
+            */
+            increment: function (mutations, param1) {
+                //외부 함수 호출 & 결과 받기.
+                var result1 = param1
+
+                // mutations commit 하기
+                mutations.commit("increment", result1)
+            },
+            decrement: function (mutations, param1) {
+                //외부 함수 호출 & 결과 받기.
+                var result1 = param1
+
+                // mutations commit 하기
+                mutations.commit("decrement", result1)
+            },
+        },
+        mutations: {
+            /* 왜 mutations 를 사용하나? 동기식 함수. state 를 바꾸기 위해서 */
+            /* mutations 는 메서드만 가능하다.
+            첫번째인자: 무조건 state.
+            두번째인자: 값.
+            */
+            increment: function (state, param1) {
+                //this.$data.counter =  this.$data.counter + 1;
+                //this.$set(this.$data, "counter", this.$data.counter + 1)
+                state.counter = state.counter + param1;
+            },
+            decrement: function (state, param1) {
+                //this.$data.counter =  this.$data.counter - 1;
+                //this.$set(this.$data, "counter", this.$data.counter - 1)
+                state.counter = state.counter + param1;
+            },
+        },
+        state: {
+            /* vue인스턴스나 컴포넌트의 data 프로퍼티에 해당 */
+            counter: 0,
+        },
+        getters: {
+            /* state 변경 여부를 컴포넌트에 알리는 역활 
+             * 첫번째인자: 무조건 state
+            */
+            counter: function (state) {
+                return state.counter;
+            },
+        },
+    })
+
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            header: "Vuex 사용 앱",
+            welcome: "HELLO WORLD",
+            //store에 있는걸 쓰려고 주석처리함
+            //counter: 0,
+        },
+        //template: ``,
+        methods: {
+            increment: function (event) {
+                //this.$set(this.$data, "counter", this.$data.counter + 1)
+                //위의 코드가 아래와 같이 바뀜
+                store.dispatch("increment", +1)
+            },
+            decrement: function (event) {
+                //this.$set(this.$data, "counter", this.$data.counter - 1)
+                //위의 코드가 아래와 같이 바뀜
+                store.dispatch("decrement", -1)
+            }
+        },
+        components: {
+
+        },
+        computed: {
+            //computed를 사용해서 store에 있는 state를 모니터링하게 작성
+            //주의 사항은 computed의 이름과 data 이름이 중복되면 안된다. 한쪽에만 있어야 한다.
+            counter: function () {
+                return store.getters.counter;
+            }
+
+        },
+        watch: {
+
+        },
+        mounted: function () {
+            console.log("mounted");
+        },
+        updated: function () {
+            console.log("updated");
+        },
+    });
+
+</script>
