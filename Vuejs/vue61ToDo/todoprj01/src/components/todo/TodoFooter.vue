@@ -23,8 +23,8 @@
         /* pdtmc^2w */
         props: [],
         methods: {
-            clearAll: function(event) {
-                this.$emit("clear-all")
+            clearAll: function() {
+                this.$emit("clearAll")
             }
         }
     };

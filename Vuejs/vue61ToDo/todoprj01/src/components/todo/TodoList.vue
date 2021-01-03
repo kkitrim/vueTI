@@ -55,7 +55,7 @@ li.checked {
                 <span
                     class="removeBtn"
                     type="button"
-                    v-on:click="removeTodo(todoItem.id, index)"
+                    v-on:click.stop="removeTodo(todoItem.id, index)"
                 >
                     <i class="far fa-trash-alt" aria-hidden="true"></i>
                 </span>
@@ -68,12 +68,21 @@ export default {
     /* pdtmc^2w */
     props: ["todoItems"],
     methods: {
-        checked: function(done) {
+        checked: function (done) {
+                if (done) {
+                    return "checked";
+                }
+                else {
+                    return null;
+                }
+            },
+            doneToggle: function (id, index) {
+                this.$emit("doneToggle", id, index)
+            },
+            removeTodo: function (id, index) {
+                this.$emit("removeTodo", id, index)
+            },
         },
-        doneToggle: function(id, index) {
-        },
-        removeTodo: function(id, index) {
-        }
-    }
 };
+
 </script>

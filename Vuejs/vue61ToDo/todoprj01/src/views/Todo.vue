@@ -21,14 +21,14 @@ button {
         <todo-header></todo-header>
 
         <!-- TodoInput -->
-        <todo-input v-on:add-todo="addTodo"></todo-input>
+        <todo-input v-on:addTodo="addTodo"></todo-input>
 
         <!-- TodoList -->
-        <todo-list v-bind:todo-items="todoItems" v-on:done-toggle="doneToggle" v-on:remove-todo="removeTodo">
+        <todo-list v-bind:todoItems="todoItems" v-on:doneToggle="doneToggle" v-on:removeTodo="removeTodo">
         </todo-list>
 
         <!-- TodoFooter -->
-        <todo-footer v-on:clear-all="clearAll"></todo-footer>
+        <todo-footer v-on:clearAll="clearAll"></todo-footer>
     </div>
 </template>
 
@@ -77,7 +77,7 @@ import TodoFooter from "@/components/todo/TodoFooter.vue"
                     // maxObj === { id: 4, todo: "잠실 야구장", done: false }
                 }
                 else {
-                    maxObj === { id: 0, todo: "", done: false }
+                    maxObj = { id: 0, todo: "", done: false }
                 }
 
                 var obj = {

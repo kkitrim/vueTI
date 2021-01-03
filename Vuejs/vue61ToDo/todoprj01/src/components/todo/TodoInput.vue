@@ -120,3 +120,37 @@ input:focus {
         </div>
     </div>
 </template>
+
+
+
+<script>
+    export default { 
+        /* pdtmc^2w */
+        props: [] ,
+        data: function() {
+            return { newTodoItem: null,
+                     showModal: false, }
+        },
+        template: `
+    
+        `,
+        methods: {
+            addTodo: function () {
+                this.$emit("addTodo", this.$data.newTodoItem)
+
+                // input 태그 입력값 지우기
+                //this.$data.newTodoItem = "";
+                this.$set(this.$data, "newTodoItem", "")
+            }
+        },
+        components: {
+    
+    },
+        computed: {
+    
+        },
+        watch: {
+    
+        },
+    }
+</script>
